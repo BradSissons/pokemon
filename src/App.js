@@ -1,46 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import PokemonList from './PokemonList';
 import axios from 'axios';
+import PokemonInfo from './PokemonInfo';
 import Pagination from './Pagination';
 
+window.count = 1
+
 function App() {
-  const [pokemon, setPokemon] = useState([])
-  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-  const [nextPageUrl, setNextPageUrl] = useState()
-  const [prevPageUrl, setPrevPageUrl] = useState()
+  const [pokemon, setPokemon] = useState()
+  const [currentPokeUrl, setCurrentPokeUrl] = useState("https://pokeapi.co/api/v2/pokemon/1")
+  const [nextPokeUrl, setNextPokeUrl] = useState()
+  const [prevPokeUrl, setPrevPokeUrl] = useState()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
     let cancel
-    axios.get(currentPageUrl, {
+    axios.get(currentPokeUrl, {
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
       setLoading(false)
-      setNextPageUrl(res.data.next)
-      setPrevPageUrl(res.data.previous)
-      setPokemon(res.data.results.map(p => p.name))
+      var nextUrl = "https://pokeapi.co/api/v2/pokemon/" + (window.count + 1)
+      var prevUrl = "https://pokeapi.co/api/v2/pokemon/" + (window.count - 2)
+      setNextPokeUrl(nextUrl)
+      if(window.count !== 1) setPrevPokeUrl(prevUrl)
+      else setPrevPokeUrl(null)
+      setPokemon(res.data)
+      window.count++;
     })
 
     return () => cancel()
-  }, [currentPageUrl])
+  }, [currentPokeUrl])
 
-  function nextPage() {
-    setCurrentPageUrl(nextPageUrl)
+  function nextPoke() {
+    setCurrentPokeUrl(nextPokeUrl)
   }
 
-  function prevPage() {
-    setCurrentPageUrl(prevPageUrl)
+  function prevPoke() {
+    setCurrentPokeUrl(prevPokeUrl)
   }
 
   if(loading) return "Loading..."
   
   return (
     <>
-      <PokemonList pokemon={pokemon}/>
+      <PokemonInfo pokemon={pokemon}/>
       <Pagination
-        nextPage={nextPageUrl ? nextPage : null}
-        prevPage={prevPageUrl ? prevPage : null}
+        nextPoke={nextPokeUrl ? nextPoke : null}
+        prevPoke={prevPokeUrl ? prevPoke : null}
       />
     </>
   );
