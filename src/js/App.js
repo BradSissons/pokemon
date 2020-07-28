@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavBar from './NavBar';
 import PokemonInfo from './PokemonInfo';
 import Pagination from './Pagination';
 
@@ -45,6 +46,7 @@ function App() {
   //page content
   return (
     <>
+      <NavBar/>
       <PokemonInfo pokemon={pokemon}/>
       <Pagination
         nextPoke={nextPokeUrl ? nextPoke : null}
