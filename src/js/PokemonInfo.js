@@ -11,6 +11,10 @@ export default function PokemonInfo({ pokemon }) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function removeQuotes(string) {
+        return capitalizeFirstLetter(string.substring(1, string.length - 1))
+    }
+
     if(pokemon) document.body.id = pokemon.types[0].type.name
 
     return (
@@ -21,8 +25,9 @@ export default function PokemonInfo({ pokemon }) {
                 <h1><span id="title">{capitalizeFirstLetter(pokemon.name) + " #" + padLeft(pokemon.id)}</span></h1>
                 <div id="content">
                     <img src={"https://pokeres.bastionbot.org/images/pokemon/" + pokemon.id + ".png"} alt="Sprite"/>
-                    <p>{"Type: " + (pokemon.types[1] ? capitalizeFirstLetter(pokemon.types[0].type.name) + " / " + capitalizeFirstLetter(pokemon.types[1].type.name) : capitalizeFirstLetter(pokemon.types[0].type.name))}</p>
-                    <p>{"Abilities: " + (pokemon.abilities[2] ? capitalizeFirstLetter(pokemon.abilities[0].ability.name) + ", " + capitalizeFirstLetter(pokemon.abilities[1].ability.name) + ", " + capitalizeFirstLetter(pokemon.abilities[2].ability.name) : (pokemon.abilities[1] ? capitalizeFirstLetter(pokemon.abilities[0].ability.name) + ", " + capitalizeFirstLetter(pokemon.abilities[1].ability.name) : capitalizeFirstLetter(pokemon.abilities[0].ability.name)))}</p>
+                    <p>{"Type: " + pokemon.types.map(p => " " + removeQuotes(JSON.stringify(p.type.name)))}</p>
+                    <p>{"Abilities: " + pokemon.abilities.map(p => " " + removeQuotes(JSON.stringify(p.ability.name)))}</p>
+                    <p>{"Height: " + pokemon.height + "m"}</p>
                     <p>{"Weight: " + pokemon.weight / 10 + "kg"}</p>
                 </div>    
             </div>

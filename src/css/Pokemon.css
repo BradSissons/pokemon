@@ -16,8 +16,12 @@ img {
     height: 200px;
     padding: 10px;
     margin: 25px;
-    margin-top: 9px;
+    margin-top: 3px;
     float: right;
+}
+
+p {
+    font-size: 22px;
 }
 
 p, h1 {
