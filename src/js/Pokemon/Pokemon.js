@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PokemonInfo from './PokemonInfo';
-import Pagination from '../Components/Pagination';
-import '../../css/NavBar.css'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import PokemonInfo from './PokemonInfo'
+import Pagination from '../Components/Pagination'
 
 function Pokemon() {
 	//store pokemon data, current url, next url, prev url and if data is loading
@@ -48,8 +47,8 @@ function Pokemon() {
 		<>
 		<PokemonInfo pokemon={pokemon}/>
 		<Pagination
-			nextPoke={nextPokeUrl ? nextPoke : null}
-			prevPoke={prevPokeUrl ? prevPoke : null}
+			next={nextPokeUrl ? nextPoke : null}
+			prev={prevPokeUrl ? prevPoke : null}
 		/>
 		</>
 	);

@@ -22,16 +22,17 @@ function App() {
 
   	return (
 		<div>
-			<div id="navBar" style={{display:'flex'}}>
-				<Link to="/">Pokédex</Link>
-				<Link to="/pokemon">Pokémon</Link>
-				<Link to="/items">Items</Link>
-
-				<form onSubmit={handleSubmit}>
-					<input type="search" id="search" placeholder="Search" value={gotoPoke} onChange={handleChange}></input>
-					<input type="submit" style={{display: "none"}}></input>
-				</form>
-			</div>
+			<ul>
+				<li><Link to="/" className="active">Pokédex</Link></li>
+				<li><Link to="/pokemon">Pokémon</Link></li>
+				<li><Link to="/items">Items</Link></li>
+				<li style={{float:'right'}}>
+					<form onSubmit={handleSubmit}>
+						<input type="search" id="search" placeholder="Search" value={gotoPoke} onChange={handleChange}></input>
+						<input type="submit" style={{display: "none"}}></input>
+					</form>
+				</li>
+			</ul>
 			<Switch>
 				<Route component={Pokemon} path="/pokemon"/>
 				<Route component={Items} path="/items"/>

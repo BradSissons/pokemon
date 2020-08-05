@@ -1,5 +1,4 @@
-import React from 'react';
-import '../../css/NavBar.css'
+import React from 'react'
 
 function Items() {
   	//page content
