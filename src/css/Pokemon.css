@@ -15,17 +15,20 @@ img {
     width: 200px;
     height: 200px;
     padding: 10px;
-    margin: 25px;
     margin-top: 3px;
     float: right;
 }
 
-p {
+p, td {
     font-size: 22px;
 }
 
-p, h1 {
+p, h1, td {
     color: white;
+}
+
+table {
+    margin-left: 50px;
 }
 
 #title {
@@ -34,5 +37,8 @@ p, h1 {
 }
 
 #content {
-    margin-left: 25px;
+    margin: auto;
+    padding: 25px;
+    max-width: 1000px;
+    min-width: 1vw;
 }

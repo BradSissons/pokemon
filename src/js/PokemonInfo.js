@@ -4,7 +4,7 @@ import '../css/Types.css'
 
 export default function PokemonInfo({ pokemon }) {
     function padLeft(ID) {
-        return Array(3 - String(ID).length + 1).join('0') + ID
+        return String(ID).padStart(3, "0")
     }
 
     function capitalizeFirstLetter(string) {
@@ -26,9 +26,38 @@ export default function PokemonInfo({ pokemon }) {
                 <div id="content">
                     <img src={"https://pokeres.bastionbot.org/images/pokemon/" + pokemon.id + ".png"} alt="Sprite"/>
                     <p>{"Type: " + pokemon.types.map(p => " " + removeQuotes(JSON.stringify(p.type.name)))}</p>
-                    <p>{"Abilities: " + pokemon.abilities.map(p => " " + removeQuotes(JSON.stringify(p.ability.name)))}</p>
                     <p>{"Height: " + pokemon.height + "m"}</p>
                     <p>{"Weight: " + pokemon.weight / 10 + "kg"}</p>
+                    <p>{"Abilities: " + pokemon.abilities.map(p => " " + removeQuotes(JSON.stringify(p.ability.name)))}</p>
+                    <p>{"Base Stats:"}</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>{"HP:"}</td>
+                                <td>{pokemon.stats[0].base_stat}</td>
+                            </tr>
+                            <tr>
+                                <td>{"Attack:"}</td>
+                                <td>{pokemon.stats[1].base_stat}</td>
+                            </tr>
+                            <tr>
+                                <td>{"Defence:"}</td>
+                                <td>{pokemon.stats[2].base_stat}</td>
+                            </tr>
+                            <tr>
+                                <td>{"Special-Attack:"}</td>
+                                <td>{pokemon.stats[3].base_stat}</td>
+                            </tr>
+                            <tr>
+                                <td>{"Special-Defence: "}</td>
+                                <td>{pokemon.stats[4].base_stat}</td>
+                            </tr>
+                                <tr>
+                                <td>{"Speed:"}</td>
+                                <td>{pokemon.stats[5].base_stat}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>    
             </div>
             }
