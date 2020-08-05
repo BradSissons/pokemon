@@ -1,6 +1,6 @@
 import React from 'react'
-import '../css/Pokemon.css'
-import '../css/Types.css'
+import '../../css/Pokemon.css'
+import '../../css/Types.css'
 
 export default function PokemonInfo({ pokemon }) {
     function padLeft(ID) {
